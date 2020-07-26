@@ -1,4 +1,4 @@
-Given a sorted linked list, delete all duplicates such that each element appear only once.
+/*Given a sorted linked list, delete all duplicates such that each element appear only once.
 
 Example 1:
 
@@ -21,17 +21,17 @@ Output: 1->2->3
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) 
+    ListNode* deleteDuplicates(ListNode* head)
     {
-        if(head == NULL or head->next == NULL)
+        if (head == NULL or head->next == NULL)
             return head;
-        
+
         ListNode* curr = head;
         ListNode* temp;
-        
-        while(curr!=NULL and curr->next!=NULL)
+
+        while (curr != NULL and curr->next != NULL)
         {
-            if(curr->val == curr->next->val)
+            if (curr->val == curr->next->val)
             {
                 temp = curr->next;
                 curr->next = temp->next;
@@ -40,6 +40,6 @@ public:
             else
                 curr = curr->next;
         }
-        return head;        
+        return head;
     }
 };

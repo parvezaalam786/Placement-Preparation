@@ -1,7 +1,7 @@
-Method 1: Using stack
+/*Method 1: Using stack
 (1) Traverse the linked list and push all the nodes in the stack
-(2) Now again traverse the list and pop out elements and compare with the current node 
-    to check if it is palindrome.
+(2) Now again traverse the list and pop out elements and compare with the current node
+to check if it is palindrome.
 
 /**
  * Definition for singly-linked list.
@@ -15,33 +15,33 @@ Method 1: Using stack
  */
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) 
-    {
-        ListNode* curr = head;
-        stack<int> s1;
-        
-        while(curr!=NULL)
-        {
-            s1.push(curr->val);
-            curr = curr->next;
-        }
-        
-        curr = head;
-        while(curr!=NULL)
-        {
-            if(curr->val == s1.top())
-            {
-                s1.pop();
-                curr = curr->next;
-            }
-            else
-                return false;
-        }
-        return true;
-    }
+	bool isPalindrome(ListNode* head)
+	{
+		ListNode* curr = head;
+		stack<int> s1;
+
+		while (curr != NULL)
+		{
+			s1.push(curr->val);
+			curr = curr->next;
+		}
+
+		curr = head;
+		while (curr != NULL)
+		{
+			if (curr->val == s1.top())
+			{
+				s1.pop();
+				curr = curr->next;
+			}
+			else
+				return false;
+		}
+		return true;
+	}
 };
 
-Method 2: By reversing half of the linked list and checking for palindrome
+/*Method 2: By reversing half of the linked list and checking for palindrome
 
 /**
  * Definition for singly-linked list.

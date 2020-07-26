@@ -1,4 +1,4 @@
-Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+/*Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 
 Return the linked list sorted as well.
 
@@ -23,23 +23,23 @@ Output: 2->3
  */
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) 
+    ListNode* deleteDuplicates(ListNode* head)
     {
-        if(head == NULL or head->next == NULL)
+        if (head == NULL or head->next == NULL)
             return head;
         ListNode* start = new ListNode();
         start->next = head;
         ListNode* prev = start;
         ListNode* curr = head;
-        
-        while(curr != NULL)
+
+        while (curr != NULL)
         {
-            while(curr->next != NULL and prev->next->val == curr->next->val)
+            while (curr->next != NULL and prev->next->val == curr->next->val)
             {
                 curr = curr->next;
             }
-            
-            if(prev->next == curr)
+
+            if (prev->next == curr)
             {
                 prev = prev->next;
             }

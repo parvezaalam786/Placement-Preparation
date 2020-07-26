@@ -1,7 +1,7 @@
-Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+/*Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
 k is a positive integer and is less than or equal to the length of the linked list. If the number of
-nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+nodes is not a multiple of k then left - out nodes in the end should remain as it is.
 
 Example:
 
@@ -19,43 +19,43 @@ You may not alter the values in the list's nodes, only nodes itself may be chang
 Recursive:
 
 /**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+    * Definition for singly-linked list.
+    * struct ListNode {
+    *     int val;
+    *     ListNode *next;
+    *     ListNode() : val(0), next(nullptr) {}
+    *     ListNode(int x) : val(x), next(nullptr) {}
+    *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+    * };
+*/
 class Solution {
 public:
-    ListNode* reverseKGroup(ListNode* head, int k) 
+    ListNode* reverseKGroup(ListNode* head, int k)
     {
         ListNode *curr = head, *prev = NULL, *next = NULL;
         int cnt = 0;
         ListNode *temp = head;
-        while(temp != NULL and cnt<k)
+        while (temp != NULL and cnt < k)
         {
             temp = temp->next;
             cnt++;
         }
-        if(cnt<k)
+        if (cnt < k)
             return head;
         else
             cnt = 0;
-        while(curr != NULL and cnt<k)
+        while (curr != NULL and cnt < k)
         {
             next = curr->next;
-            curr->next = prev; 
+            curr->next = prev;
             prev = curr;
             curr = next;
             cnt++;
         }
-        
-        if(curr != NULL)
+
+        if (curr != NULL)
         {
-            ListNode *res = reverseKGroup(curr,k);
+            ListNode *res = reverseKGroup(curr, k);
             head->next = res;
         }
         return prev;
