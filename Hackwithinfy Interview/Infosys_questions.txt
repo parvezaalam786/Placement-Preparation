@@ -1,0 +1,170 @@
+/*
+You are working on a project where I need to manage multiple client’s invoices. After certain period of time, clients have requested to provide list of missing invoice number from each one of them group by year. You can assume input data are in the following format:
+Client Name Year Start End
+
+Infosys 2017 101 102
+TCS 2016. 105 108
+Infosys 2017 105 108
+TCS 2016 112 116
+Wipro 2017 103 104
+Infosys 2017 115 120
+Wipro 2017 108 112
+TCS 2017 101 104
+
+
+
+Expected output:
+Infosys 2017
+103,104,109,110, 111,112,113,114
+
+TCS 2016 109, 110, 111
+
+WIPRO 2017 105,106,107
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ff first
+#define ss second
+
+bool cmp(pair<int, int> a, pair<int, int> b)
+{
+	if (a.ff == b.ff)
+		return a.ss < b.ss;
+	return (a.ff < b.ff);
+}
+
+int main()
+{
+	map<pair<string, int>, vector<pair<int, int>>> m1;
+	int clients;
+	cin >> clients;
+	for (int c = 0; c < clients; c++)
+	{
+		string client_name;
+		int year, start, end;
+		cin >> client_name >> year >> start >> end;
+
+		auto p = make_pair(client_name, year);
+		m1[p].push_back({start, end});
+	}
+
+	for (auto i : m1)
+	{
+		sort(i.ss.begin(), i.ss.end(), cmp);
+	}
+
+
+	for (auto i : m1)
+	{
+		cout << i.ff.ff << " " << i.ff.ss << ":";
+		if (i.ss.size() > 0)	
+		{
+			int s = i.ss[0].ff;
+			int e = i.ss[0].ss;
+
+			for (int j = 1; j < i.ss.size(); j++)
+			{
+				while (e < i.ss[j].ff)
+				{
+					e++;
+					cout << e << " ";
+				}
+				e = i.ss[j].ss;
+			}
+		}
+		cout << "\n";
+	}
+	return 0;
+}
+
+/*
+
+8
+Infosys 2017 101 102
+TCS 2016 105 108
+Infosys 2017 105 108
+TCS 2016 112 116
+Wipro 2017 103 104
+Infosys 2017 115 120
+Wipro 2017 108 112
+TCS 2017 101 104
+*/
+
+
+
+
+/*
+
+
+
+Phone: call history
+
+1) which call was made recently (incoming,outgoing,missed)
+2) number of times call made like incoming details
+
+
+
+5->1
+
+0 = incoming
+1 = out
+2 = missed
+map<number,type,no of times> m1
+
+1) deque  front ->recent   end = last
+2) stack top = recent call
+
+1 1 2 3 4 5  O(n)
+
+
+*/
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string s = "GeeksForGeeks is a must try";
+
+	stringstream p(s);
+	string temp;
+	while (p >> temp)
+	{
+		cout << temp << "\n";
+	}
+	// vector<string> ans;
+
+	// string temp = "";
+	// for (int i = 0; i < s.length(); i++)
+	// {
+	// 	if (s[i] == ' ')
+	// 	{
+	// 		if (temp != "")
+	// 		{
+	// 			ans.push_back(temp);
+	// 		}
+	// 		temp = "";
+	// 	}
+	// 	else
+	// 		temp += s[i];
+	// }
+	// if (temp != "")
+	// 	ans.push_back(temp);
+	// for (auto &i : ans)
+	// {
+	// 	cout << i << "\n";
+	// }
+	return 0;
+}
+
+
+
+
+
+
+
+
