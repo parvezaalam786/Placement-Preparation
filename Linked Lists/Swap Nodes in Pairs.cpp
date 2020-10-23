@@ -18,32 +18,50 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+//Recurive
 class Solution {
 public:
 	ListNode* swapPairs(ListNode* head)
 	{
 		if (head == NULL or head->next == NULL)
 			return head;
-		ListNode *curr = head, *prev = NULL;
+		ListNode *prev = head;
+		ListNode *curr = head->next;
+		ListNode *next = curr->next;
 
-		while (curr != NULL and curr->next != NULL)
+		curr->next = prev;
+
+		prev->next = swapPairs(next);
+		return curr;
+	}
+}
+
+//Iterative
+class Solution {
+public:
+	ListNode* swapPairs(ListNode* head)
+	{
+		if (head == NULL or head->next == NULL)
+			return head;
+		ListNode *curr = head;
+		head = head->next;
+
+		while (1)
 		{
 			ListNode *temp = curr->next;
-			curr->next = temp->next;
+			ListNode *next = temp->next;
 			temp->next = curr;
-
-			if (prev == NULL)
+			if (next == NULL or next->next == NULL)
 			{
-				head = temp;
-				prev = temp;
+				curr->next = next;
+				break;
 			}
-			else
-				prev->next = temp;
-
-			prev = curr;
-			curr = curr->next;
+			curr->next = next->next;
+			curr = next;
 		}
 
 		return head;
 	}
 };
+

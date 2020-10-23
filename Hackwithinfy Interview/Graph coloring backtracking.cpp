@@ -27,11 +27,10 @@ bool graphColoring(bool graph[V][V], int m, int i, int color[])
         color[i] = c;
         if (isSafe(i, c, graph, color))
         {
-            color[i] = c;
             if (graphColoring(graph, m, i + 1, color) == true)
                 return true;
-            color[i] = 0;
         }
+        color[i] = 0;
     }
     return false;
 }

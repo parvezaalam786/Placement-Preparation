@@ -22,7 +22,7 @@ bool go(vector<vector<int>> &arr, int sx, int sy, int dx, int dy, int r, int c)
 		return true;
 	if (go(arr, sx - 1, sy, dx, dy, r, c))
 		return true;
-
+	visited[sx][sy] = false;
 	return false;
 }
 void solve()
